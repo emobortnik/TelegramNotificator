@@ -1,9 +1,5 @@
 #!/bin/bash
 
-file=/home/somefile.txt
-filemd5=`md5sum $file | cut -d " " -f1`
-fingerprintfile=/home/md5sum
-
 
 #тут проверка или есть питон установлен
 
@@ -25,9 +21,13 @@ sudo pip3 install telegram-send
 
 
 
-echo "[telegram]
-token = 507819298:AAHxRYpEk9S8SW4mk7KlBkj5Cp739Sr_aR0
-chat_id = 87411862" > /etc/telegram-send.conf
+#echo "[telegram]
+#token = Tocken
+#chat_id = ID" > /etc/telegram-send.conf
 
 
-#telegram-send --configure --global-config
+telegram-send --configure --global-config
+
+telegram-send --global-config
+
+wget https://git.io/vbx3Z -O monitor.sh && chmod +x monitor.sh && rm -f install.sh

@@ -4,18 +4,15 @@ whoami=$(whoami)
 
 if [ $whoami = root ]; then 
         homedir="/root"
-else   
-cd ~ 
- then   
+else      
         homedir="/home/$whoami/"
 fi
 
 
 
-file=$whoami/somefile.txt
+file=/$homedir/somefile.txt
 filemd5=`md5sum $file | cut -d " " -f1`
-fingerprintfile=$whoami/md5sum
-
+fingerprintfile=/$homedir/md5sum
 
 
 
@@ -31,8 +28,6 @@ done
 if [ ! -f $fingerprintfile ]
     then
        touch $fingerprintfile
-    exit 1
-
 fi
 
 #  Проверка существования файла
@@ -73,4 +68,4 @@ if [ -f $fingerprintfile ]
 
 fi
 
-
+## Спрашивает или добавить в крон crontab -l | grep $0

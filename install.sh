@@ -22,7 +22,6 @@ curl -O https://bootstrap.pypa.io/get-pip.py
 
 sudo pip3 install telegram-send
 
-#telegram-send --configure --global-config
 
 
 
@@ -30,3 +29,5 @@ echo "[telegram]
 token = 507819298:AAHxRYpEk9S8SW4mk7KlBkj5Cp739Sr_aR0
 chat_id = 87411862" > /etc/telegram-send.conf
 
+
+#telegram-send --configure --global-config

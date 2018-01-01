@@ -1,18 +1,39 @@
 #!/bin/bash
 
+whoami=$(whoami)
 
-file=/home/bortnik/mercatox.com.kdbx
+if [ $whoami = root ]; then 
+        homedir="/root"
+else   
+cd ~ 
+ then   
+        homedir="/home/$whoami/"
+fi
+
+
+
+file=$whoami/somefile.txt
 filemd5=`md5sum $file | cut -d " " -f1`
-fingerprintfile=/home/bortnik/md5sum
+fingerprintfile=$whoami/md5sum
+
+
 
 
 #Проверка не используется ли сейчас файл
+#изменить что грепать
 while  [[ `lsof | grep keepass` ]]
 do
       echo "Ошибка: $file сейчас занят. "
          exit 1
 done
 
+#  Проверка существования отпечатка
+if [ ! -f $fingerprintfile ]
+    then
+       touch $fingerprintfile
+    exit 1
+
+fi
 
 #  Проверка существования файла
 if [ ! -f $file ]
@@ -45,7 +66,7 @@ if [ -f $fingerprintfile ]
         echo "Файл изменен. Новая MD5 сумма сохранена. Файл отправлен в телеграм."
 
 
-                # Тут отправкка файла в телегу..
+               telegram-send -f $file
 
 
         fi
